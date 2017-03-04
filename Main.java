@@ -11,8 +11,8 @@ public class Main {
         String i=scanner.nextLine();*/
         //System.out.println(i);
 
-        Polinom polinom=new Polinom("-2x^20+3x^5+5");
-
+        Polinom polinom=new Polinom("-2x^20-5x^2+3x^5+5");
+        polinom.getListaMonoame();
 
 
     }

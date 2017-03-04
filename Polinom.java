@@ -2,6 +2,7 @@ package com.company;
 
 import javax.swing.*;
 import java.security.InvalidParameterException;
+import java.util.TreeSet;
 
 /**
  * Created by Andrei on 04.03.2017.
@@ -10,12 +11,13 @@ import java.security.InvalidParameterException;
 public class Polinom {
 
     private Monom monom;
-
+    private TreeSet<Monom> listaMonoame;
     private String[] parts;
 
     public Polinom(String text)
     {
         try{
+            listaMonoame=new TreeSet<Monom>();
             if(text.contains("^+") || text.contains("^-"))
                 throw new InvalidParameterException();
             for(int i=0;i<text.length();i++) {
@@ -26,13 +28,17 @@ public class Polinom {
             }
             String[] parts = text.split("(?=\\+|\\-)");
             for(int i=0;i<parts.length;i++)
-                monom = new Monom(parts[i]);
-
-
+                listaMonoame.add(new Monom(parts[i]));
         }
         catch(InvalidParameterException e)
         {
             System.out.println("Invalid input");
+        }
+    }
+
+    public void getListaMonoame(){
+        for (Monom m:this.listaMonoame) {
+            System.out.println(m.getCoeficient()+" "+m.getGrad());
         }
     }
 
