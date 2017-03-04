@@ -63,4 +63,13 @@ public class Monom implements Comparable<Monom> {
         return this.grad;
     }
 
+    public void setCoeficient(int coef)
+    {
+        this.coeficient=coef;
+    }
+
+    public void setGrad(int grad){
+        this.grad=grad;
+    }
+
 }

@@ -2,6 +2,8 @@ package com.company;
 
 import javax.swing.*;
 import java.security.InvalidParameterException;
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.TreeSet;
 
 /**
@@ -11,13 +13,13 @@ import java.util.TreeSet;
 public class Polinom {
 
     private Monom monom;
-    private TreeSet<Monom> listaMonoame;
+    private ArrayList<Monom> listaMonoame;
     private String[] parts;
 
     public Polinom(String text)
     {
         try{
-            listaMonoame=new TreeSet<Monom>();
+            listaMonoame=new ArrayList<>();
             if(text.contains("^+") || text.contains("^-"))
                 throw new InvalidParameterException();
             for(int i=0;i<text.length();i++) {
@@ -36,11 +38,16 @@ public class Polinom {
         }
     }
 
-    public void getListaMonoame(){
-        for (Monom m:this.listaMonoame) {
-            System.out.println(m.getCoeficient()+" "+m.getGrad());
-        }
+    public ArrayList<Monom> getListaMonoame(){
+        listaMonoame.sort(new Comparator<Monom>() {
+            @Override
+            public int compare(Monom o1, Monom o2) {
+                return o1.compareTo(o2);
+            }
+        });
+        return listaMonoame;
     }
+
 
 
 }
