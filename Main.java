@@ -12,12 +12,13 @@ public class Main {
         String i=scanner.nextLine();*/
         //System.out.println(i);
         Model n=new Model();
-        Polinom polinom=new Polinom("2x^20-3x^2+3x^2-x^5+5-3+2");
-        Polinom polinom1=new Polinom("2x^2-4x^5+3");
+        Polinom polinom=new Polinom("2x^20-1x^2+3x^2-x^5+5-3+2");
+        Polinom polinom1=new Polinom("2x^2+3x^6-4x^5+3");
 
         Polinom suma=n.adunare(polinom,polinom1);
-
         suma.afisarePolinom();
-
+        Polinom diferenta=n.scadere(polinom,polinom1);
+        System.out.println();
+        diferenta.afisarePolinom();
     }
 }

@@ -45,6 +45,7 @@ public class Polinom {
 
     public Polinom(ArrayList<Monom> listaMonoame){
         this.listaMonoame=listaMonoame;
+        this.sort();
     }
 
     public void merge(){
@@ -89,7 +90,8 @@ public class Polinom {
 
     public ArrayList<Monom> getListaMonoame(){
 
-        return listaMonoame;
+        ArrayList<Monom> lista=new ArrayList<Monom>(this.listaMonoame);
+        return lista;
     }
 
     public void setListaMonoame(ArrayList<Monom> list){
@@ -98,6 +100,7 @@ public class Polinom {
 
     public void afisarePolinom()
     {
+        this.clean();
         for(Monom m:this.listaMonoame) {
             if (m.equals(this.listaMonoame.get(0))) {
                 if (m.getGrad() > 1)
