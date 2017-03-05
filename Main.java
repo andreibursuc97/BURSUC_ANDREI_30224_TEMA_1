@@ -1,5 +1,6 @@
 package com.company;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
@@ -10,10 +11,13 @@ public class Main {
         Scanner scanner=new Scanner(System.in);
         String i=scanner.nextLine();*/
         //System.out.println(i);
+        Model n=new Model();
+        Polinom polinom=new Polinom("2x^20-3x^2+3x^2-x^5+5-3+2");
+        Polinom polinom1=new Polinom("2x^2-4x^5+3");
 
-        Polinom polinom=new Polinom("-2x^20-5x^2+3x^2+3x^5+5");
-        polinom.getListaMonoame();
+        Polinom suma=n.adunare(polinom,polinom1);
 
+        suma.afisarePolinom();
 
     }
 }

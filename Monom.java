@@ -15,13 +15,26 @@ public class Monom implements Comparable<Monom> {
     {
         String[] parts;
         if(monom.lastIndexOf('^')==monom.length()-1) throw new InvalidParameterException();
-        if(monom.lastIndexOf('x')!=-1)
+
+        if(monom.lastIndexOf('x')!=-1 && monom.lastIndexOf('x')!=0 && monom.contains("+x")==false && monom.contains("-x")==false )
+        {
+            //System.out.println(1);
             this.coeficient=Integer.parseInt(monom.substring(0,monom.lastIndexOf('x')));
-        else
+            }
+
+        if(monom.lastIndexOf('x')==-1)
         {
             this.coeficient=Integer.parseInt(monom);
             this.grad=0;
         }
+
+        if(monom.contains("+x")==true)
+            this.coeficient=1;
+        else if(monom.contains("-x")==true)
+            this.coeficient=-1;
+        if(monom.lastIndexOf('x')==0)
+            this.coeficient=1;
+
 
         if(monom.contains("x^")) {
             parts=monom.split("\\^");
@@ -35,13 +48,19 @@ public class Monom implements Comparable<Monom> {
 
     public Monom(){}
 
+    public Monom(int coeficient,int grad)
+    {
+        this.coeficient=coeficient;
+        this.grad=grad;
+    }
+
     @Override
     public int compareTo(Monom o) {
         if(this.grad<o.grad)
-            return -1;
+            return 1;
         else
             if(this.grad>o.grad)
-                return 1;
+                return -1;
         return 0;
     }
 
