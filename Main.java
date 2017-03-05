@@ -18,7 +18,7 @@ public class Main {
         Polinom suma=n.adunare(polinom,polinom1);
         suma.afisarePolinom();
         Polinom diferenta=n.scadere(polinom,polinom1);
-        System.out.println();
+        System.out.println(" ");
         diferenta.afisarePolinom();
     }
 }
