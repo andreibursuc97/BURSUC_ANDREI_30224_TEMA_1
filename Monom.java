@@ -78,6 +78,22 @@ public class Monom implements Comparable<Monom> {
         return this.coeficient;
     }
 
+    public String getTextCoeficient()
+    {
+        if(this.coeficient!=1)
+        {
+            String m=new String(this.coeficient+"");
+            return m;
+        }
+        else if(this.coeficient==1 && this.grad==0)
+        {
+            String m=new String(this.coeficient+"");
+            return m;
+        }
+        else
+            return "";
+    }
+
     public int getGrad(){
         return this.grad;
     }
@@ -85,6 +101,11 @@ public class Monom implements Comparable<Monom> {
     public void setCoeficient(int coef)
     {
         this.coeficient=coef;
+    }
+
+    public void setInversCoeficient()
+    {
+        this.coeficient=-this.coeficient;
     }
 
     public void setGrad(int grad){

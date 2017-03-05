@@ -49,6 +49,7 @@ public class Polinom {
     }
 
     public void merge(){
+        this.sort();
         int i=0;
         int j;
         Monom m,n;
@@ -104,57 +105,50 @@ public class Polinom {
         for(Monom m:this.listaMonoame) {
             if (m.equals(this.listaMonoame.get(0))) {
                 if (m.getGrad() > 1)
-                    System.out.print(m.getCoeficient() + "x^" + m.getGrad());
+                    System.out.print(m.getTextCoeficient() + "x^" + m.getGrad());
                 else if (m.getGrad() == 1)
-                    System.out.print(m.getCoeficient() + "x");
+                    System.out.print(m.getTextCoeficient() + "x");
                 else
-                    System.out.print(m.getCoeficient());
+                    System.out.print(m.getTextCoeficient());
                 continue;
             }
 
             if (m.getCoeficient() > 0){
                 System.out.print("+");
                 if (m.getGrad() > 1)
-                    System.out.print(m.getCoeficient() + "x^" + m.getGrad());
+                    System.out.print(m.getTextCoeficient() + "x^" + m.getGrad());
                 else if (m.getGrad() == 1)
-                    System.out.print(m.getCoeficient() + "x");
+                    System.out.print(m.getTextCoeficient() + "x");
                 else
-                    System.out.print(m.getCoeficient());
+                    System.out.print(m.getTextCoeficient());
             }
             else
                  if (m.getGrad() > 1)
-                    System.out.print(m.getCoeficient() + "x^" + m.getGrad());
+                    System.out.print(m.getTextCoeficient() + "x^" + m.getGrad());
                  else if (m.getGrad() == 1)
-                     System.out.print(m.getCoeficient() + "x");
+                     System.out.print(m.getTextCoeficient() + "x");
                  else
-                     System.out.print(m.getCoeficient());
+                     System.out.print(m.getTextCoeficient());
 
 
         }
 
     }
 
-}
+    public void adaugaMonom(Monom m)
+    {
+        int ok=0;
+        for(Monom n:this.listaMonoame)
+        {
+            if(n.getGrad()==m.getGrad())
+            {
+                n.setCoeficient(n.getCoeficient()+m.getCoeficient());
+                ok=1;
+                break;
+            }
+        }
+        if(ok==0) this.listaMonoame.add(m);
+    }
 
-/*if(text.lastIndexOf('+')==-1 && text.lastIndexOf('-')!=0)
-                monom=new Monom(text,0);
-            else if(text.lastIndexOf('+')==-1 && text.lastIndexOf('-')==0)
-                monom=new Monom(text,1);
-                    else{
-                        parts=text.split(delimiter1);
-                        for(int i=0;i<parts.length;i++) {
-                            if (parts[i].lastIndexOf('-') == -1)
-                                monom = new Monom(parts[i], 0);
-                            else {
-                                int ok=0;
-                                if(parts[i].charAt(0)=='-') {
-                                    ok=1;
-                                    parts[i]=parts[i].substring(1);
-                                }
-                                parts2 = parts[i].split(delimiter2);
-                                if(ok==1) monom=new Monom(parts2[0],1);
-                                    else monom=new Monom(parts2[0],0);
-                                for (int j = 1; j < parts2.length; j++)
-                                    monom=new Monom(parts2[j],1);
-                            }
-                        }*/
+
+}
