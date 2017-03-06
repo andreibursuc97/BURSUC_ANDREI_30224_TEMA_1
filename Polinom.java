@@ -48,6 +48,13 @@ public class Polinom {
         this.sort();
     }
 
+    public Polinom(Monom n)
+    {
+        ArrayList<Monom> lista=new ArrayList<>();
+        lista.add(n);
+        this.listaMonoame=lista;
+    }
+
     public void merge(){
         this.sort();
         int i=0;
@@ -75,7 +82,7 @@ public class Polinom {
         {
             m=this.listaMonoame.get(i);
             if(m.getCoeficient()==0) this.listaMonoame.remove(i);
-            i++;
+            else i++;
         }
     }
 

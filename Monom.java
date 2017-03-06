@@ -1,6 +1,7 @@
 package com.company;
 
 import java.security.InvalidParameterException;
+import java.text.DecimalFormat;
 
 /**
  * Created by Andrei on 04.03.2017.
@@ -8,9 +9,8 @@ import java.security.InvalidParameterException;
 
 public class Monom implements Comparable<Monom> {
 
-    private int coeficient;
+    private double coeficient;
     private int grad;
-    private double coeficientDouble;
 
     public Monom(String monom)
     {
@@ -20,7 +20,7 @@ public class Monom implements Comparable<Monom> {
         if(monom.lastIndexOf('x')!=-1 && monom.lastIndexOf('x')!=0 && monom.contains("+x")==false && monom.contains("-x")==false )
         {
             //System.out.println(1);
-            this.coeficient=Integer.parseInt(monom.substring(0,monom.lastIndexOf('x')));
+            this.coeficient=Double.parseDouble(monom.substring(0,monom.lastIndexOf('x')));
             }
 
         if(monom.lastIndexOf('x')==-1)
@@ -49,7 +49,7 @@ public class Monom implements Comparable<Monom> {
 
     public Monom(){}
 
-    public Monom(int coeficient,int grad)
+    public Monom(double coeficient,int grad)
     {
         this.coeficient=coeficient;
         this.grad=grad;
@@ -74,7 +74,7 @@ public class Monom implements Comparable<Monom> {
         return this.grad==mon.grad;
     }
 
-    public int getCoeficient()
+    public Double getCoeficient()
     {
         return this.coeficient;
     }
@@ -83,12 +83,14 @@ public class Monom implements Comparable<Monom> {
     {
         if(this.coeficient!=1)
         {
-            String m=new String(this.coeficient+"");
+            DecimalFormat df = new DecimalFormat("#.###");
+            String m=(long) this.coeficient == this.coeficient ? "" + (long) this.coeficient : "" + df.format(this.coeficient);
             return m;
         }
         else if(this.coeficient==1 && this.grad==0)
         {
-            String m=new String(this.coeficient+"");
+            DecimalFormat df = new DecimalFormat("#.###");
+            String m=(long) this.coeficient == this.coeficient ? "" + (long) this.coeficient : "" + df.format(this.coeficient);
             return m;
         }
         else
@@ -99,7 +101,7 @@ public class Monom implements Comparable<Monom> {
         return this.grad;
     }
 
-    public void setCoeficient(int coef)
+    public void setCoeficient(double coef)
     {
         this.coeficient=coef;
     }
@@ -112,5 +114,6 @@ public class Monom implements Comparable<Monom> {
     public void setGrad(int grad){
         this.grad=grad;
     }
+
 
 }

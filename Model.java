@@ -14,6 +14,7 @@ public class Model {
         for(Monom m:lista2)
             suma.adaugaMonom(m);
         suma.sort();
+        suma.clean();
         return suma;
     }
 
@@ -27,6 +28,7 @@ public class Model {
             diferenta.adaugaMonom(m);
         }
         diferenta.sort();
+        diferenta.clean();
         return diferenta;
     }
 
@@ -37,7 +39,8 @@ public class Model {
         ArrayList<Monom> lista1 = polinom1.getListaMonoame();
         ArrayList<Monom> lista2 = polinom2.getListaMonoame();
         Monom produs;
-        int coef,grad;
+        double coef;
+        int grad;
         for(Monom m:lista1)
             for(Monom n:lista2) {
                 coef = m.getCoeficient() * n.getCoeficient();
@@ -50,14 +53,6 @@ public class Model {
         return produsul;
     }
 
-    public Polinom impartire(Polinom polinom1,Polinom polinom2) {
-        ArrayList<Monom> listaCat = new ArrayList<Monom>();
-        ArrayList<Monom> lista1 = polinom1.getListaMonoame();
-        ArrayList<Monom> lista2 = polinom2.getListaMonoame();
-        Monom cat;
-
-        return null;
-    }
 
     public Polinom derivare(Polinom polinom)
     {
@@ -75,6 +70,66 @@ public class Model {
         return derivat;
     }
 
+    public Polinom integrare(Polinom polinom)
+    {
+        ArrayList<Monom> listaIntegrare = new ArrayList<Monom>();
+        ArrayList<Monom> lista1 = polinom.getListaMonoame();
+        Monom n;
+
+        for(Monom m:lista1)
+        {
+            n=new Monom();
+            n.setGrad(m.getGrad()+1);
+            n.setCoeficient(m.getCoeficient()/n.getGrad());
+            listaIntegrare.add(n);
+
+        }
+        Polinom integrare=new Polinom(listaIntegrare);
+
+        return integrare;
+    }
+
+    public Polinom impartire(Polinom polinom1,Polinom polinom2,ArrayList<Monom> lista)
+    {
+        ArrayList<Monom> listaImpartire = new ArrayList<Monom>(lista);
+        ArrayList<Monom> lista1 = polinom1.getListaMonoame();
+        ArrayList<Monom> lista2 = polinom2.getListaMonoame();
+
+        if(lista2.get(0).getGrad()>lista1.get(0).getGrad())
+        {
+            ArrayList<Monom> listaFinala=new ArrayList<Monom>();
+               /*for (Monom m:lista1)
+               {
+                   listaFinala.add(m);
+               }*/
+
+            for (Monom m:listaImpartire)
+            {
+                listaFinala.add(m);
+            }
+            Polinom rezultat=new Polinom(listaFinala);
+               return rezultat;
+        }
+        else {
+
+            Monom n = this.impartireMonoame(lista1.get(0), lista2.get(0));
+            listaImpartire.add(n);
+            Polinom poli = new Polinom(n);
+            poli = this.inmultire(poli, polinom2);
+            polinom1 = this.scadere(polinom1, poli);
+            return impartire(polinom1, polinom2, listaImpartire);
+        }
+    }
+
+    public Monom impartireMonoame(Monom monom1,Monom monom2)
+    {
+        double coef;
+        int grad;
+        coef=monom1.getCoeficient()/monom2.getCoeficient();
+        grad=monom1.getGrad()-monom2.getGrad();
+        Monom rez=new Monom(coef,grad);
+        return rez;
+    }
 }
 
 /*public Polinom scadere(Polinom polinom1, Polinom polinom2) {
