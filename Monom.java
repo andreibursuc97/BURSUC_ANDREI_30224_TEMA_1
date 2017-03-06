@@ -10,6 +10,7 @@ public class Monom implements Comparable<Monom> {
 
     private int coeficient;
     private int grad;
+    private double coeficientDouble;
 
     public Monom(String monom)
     {

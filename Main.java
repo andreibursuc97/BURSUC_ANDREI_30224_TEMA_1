@@ -36,5 +36,8 @@ public class Main {
         polinom=new Polinom("2x^20-1x^2+3x^2-x^5+5-3+2");
         Polinom derivat=n.derivare(polinom);
         derivat.afisarePolinom();
+
+        View view=new View();
+
     }
 }
