@@ -98,16 +98,12 @@ public class Model {
         if(lista2.get(0).getGrad()>lista1.get(0).getGrad())
         {
             ArrayList<Monom> listaFinala=new ArrayList<Monom>();
-               /*for (Monom m:lista1)
-               {
-                   listaFinala.add(m);
-               }*/
 
             for (Monom m:listaImpartire)
             {
                 listaFinala.add(m);
             }
-            Polinom rezultat=new Polinom(listaFinala);
+            Polinom rezultat=new Polinom(listaFinala,lista1);
                return rezultat;
         }
         else {

@@ -15,6 +15,7 @@ public class Polinom {
 
     //private Monom monom;
     private ArrayList<Monom> listaMonoame;
+    private ArrayList<Monom> listaRest;
     //private String[] parts;
 
     public Polinom(String text)
@@ -53,6 +54,12 @@ public class Polinom {
         ArrayList<Monom> lista=new ArrayList<>();
         lista.add(n);
         this.listaMonoame=lista;
+    }
+
+    public Polinom(ArrayList<Monom> lista, ArrayList<Monom> listaRest)
+    {
+        this.listaMonoame=lista;
+        this.listaRest=listaRest;
     }
 
     public void merge(){
@@ -106,40 +113,43 @@ public class Polinom {
         this.listaMonoame=list;
     }
 
-    public void afisarePolinom()
+    public String afisarePolinom()
     {
         this.clean();
+        StringBuilder s=new StringBuilder();
         for(Monom m:this.listaMonoame) {
             if (m.equals(this.listaMonoame.get(0))) {
                 if (m.getGrad() > 1)
-                    System.out.print(m.getTextCoeficient() + "x^" + m.getGrad());
+                    s.append(m.getTextCoeficient() + "x^" + m.getGrad());
                 else if (m.getGrad() == 1)
-                    System.out.print(m.getTextCoeficient() + "x");
+                    s.append(m.getTextCoeficient() + "x");
                 else
-                    System.out.print(m.getTextCoeficient());
+                    s.append(m.getTextCoeficient());
                 continue;
             }
 
             if (m.getCoeficient() > 0){
-                System.out.print("+");
+                s.append("+");
                 if (m.getGrad() > 1)
-                    System.out.print(m.getTextCoeficient() + "x^" + m.getGrad());
+                    s.append(m.getTextCoeficient() + "x^" + m.getGrad());
                 else if (m.getGrad() == 1)
-                    System.out.print(m.getTextCoeficient() + "x");
+                    s.append(m.getTextCoeficient() + "x");
                 else
-                    System.out.print(m.getTextCoeficient());
+                    s.append(m.getTextCoeficient());
             }
             else
                  if (m.getGrad() > 1)
-                    System.out.print(m.getTextCoeficient() + "x^" + m.getGrad());
+                     s.append(m.getTextCoeficient() + "x^" + m.getGrad());
                  else if (m.getGrad() == 1)
-                     System.out.print(m.getTextCoeficient() + "x");
+                     s.append(m.getTextCoeficient() + "x");
                  else
-                     System.out.print(m.getTextCoeficient());
+                     s.append(m.getTextCoeficient());
 
 
         }
+        String rez=s.toString();
 
+        return rez;
     }
 
     public void adaugaMonom(Monom m)
@@ -157,5 +167,9 @@ public class Polinom {
         if(ok==0) this.listaMonoame.add(m);
     }
 
+    public ArrayList<Monom> getListaRest()
+    {
+        return this.listaRest;
+    }
 
 }
