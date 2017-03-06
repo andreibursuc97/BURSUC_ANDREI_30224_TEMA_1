@@ -7,11 +7,17 @@ public class Main {
 
     public static void main(String[] args) {
 	// write your code here
+
+        View view=new View();
+        Model model=new Model();
+        Controller controller=new Controller(view,model);
+
+
        /* System.out.println("Dati ecuatia:");
         Scanner scanner=new Scanner(System.in);
         String i=scanner.nextLine();*/
         //System.out.println(i);
-        Model n=new Model();
+        /*Model n=new Model();
         Polinom polinom=new Polinom("2x^20-1x^2+3x^2-x^5+5-3+2");
         Polinom polinom1=new Polinom("2x^2+3x^6-4x^5+3");
         //System.out.println(" ");
@@ -51,7 +57,7 @@ public class Main {
         //System.out.println();
         //lista=impartire.getListaMonoame();
         System.out.println(impartire.afisarePolinom());
-        System.out.println(rest.afisarePolinom());
+        System.out.println(rest.afisarePolinom());*/
         //View view=new View();
 
         /*System.out.println();

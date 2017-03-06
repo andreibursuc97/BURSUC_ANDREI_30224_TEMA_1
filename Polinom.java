@@ -22,7 +22,7 @@ public class Polinom {
     {
         try{
             listaMonoame=new ArrayList<>();
-            if(text.contains("^+") || text.contains("^-"))
+            if(text.contains("^+") || text.contains("^-") || text.contains("-+") || text.contains("+-") || text.contains("--") || text.contains("++"))
                 throw new InvalidParameterException();
             for(int i=0;i<text.length();i++) {
                 if (text.charAt(i) < '0' || text.charAt(i) > '9')
@@ -40,7 +40,7 @@ public class Polinom {
         }
         catch(InvalidParameterException e)
         {
-            System.out.println("Invalid input");
+            JOptionPane.showMessageDialog(null,"Unul din polinoame nu a fost introdus in formatul corect !!!");
         }
     }
 
