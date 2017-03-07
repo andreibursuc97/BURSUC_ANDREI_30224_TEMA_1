@@ -46,18 +46,22 @@ public class Main {
         Polinom integrat=n.integrare(polinom);
         //System.out.println();
         System.out.println(integrat.afisarePolinom());
-        //View view=new View();
+        //View view=new View()*/
 
-        polinom=new Polinom("x^4-x^3+2x^2-x+3");
-        polinom1=new Polinom("x-1");
+        //test impartire
+        Polinom polinom=new Polinom("x^2+2x+1");
+        Polinom polinom1=new Polinom("x+1");
         ArrayList<Monom> lista=new ArrayList<>();
-        Polinom impartire=n.impartire(polinom,polinom1,lista);
+        Polinom impartire=model.impartire(polinom,polinom1,lista);
         lista=impartire.getListaRest();
         Polinom rest=new Polinom(lista);
         //System.out.println();
         //lista=impartire.getListaMonoame();
         System.out.println(impartire.afisarePolinom());
-        System.out.println(rest.afisarePolinom());*/
+        System.out.println(rest.afisarePolinom());
+        Polinom nou=model.inmultire(impartire,polinom1);
+        nou=model.adunare(nou,rest);
+        System.out.println(nou.afisarePolinom());
         //View view=new View();
 
         /*System.out.println();

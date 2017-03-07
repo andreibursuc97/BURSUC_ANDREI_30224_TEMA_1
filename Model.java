@@ -126,6 +126,7 @@ public class Model {
         Monom rez=new Monom(coef,grad);
         return rez;
     }
+
 }
 
 /*public Polinom scadere(Polinom polinom1, Polinom polinom2) {

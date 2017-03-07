@@ -88,6 +88,7 @@ public class Polinom {
         while(i< this.listaMonoame.size())
         {
             m=this.listaMonoame.get(i);
+            if(this.listaMonoame.get(0).getGrad()==0) break;
             if(m.getCoeficient()==0) this.listaMonoame.remove(i);
             else i++;
         }
