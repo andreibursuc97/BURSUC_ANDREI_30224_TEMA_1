@@ -62,6 +62,13 @@ public class Monom implements Comparable<Monom> {
         else
             if(this.grad>o.grad)
                 return -1;
+        else
+            if(this.grad==o.grad)
+                if(this.coeficient>o.coeficient)
+                    return -1;
+                else
+                    if(this.coeficient<o.coeficient)
+                        return 1;
         return 0;
     }
 
@@ -71,7 +78,7 @@ public class Monom implements Comparable<Monom> {
         if(obj instanceof Monom)
             mon=(Monom)obj;
         else return false;
-        return this.grad==mon.grad;
+        return (this.grad==mon.grad && this.coeficient==mon.coeficient);
     }
 
     public Double getCoeficient()

@@ -22,6 +22,8 @@ public class Polinom {
     public Polinom(String text) throws InvalidParameterException
     {
             listaMonoame=new ArrayList<>();
+            if(text.charAt(text.length()-1)=='+' || text.charAt(text.length()-1)=='-')
+                throw new InvalidParameterException("Unul din polinoame a fost introdus in formatul gresit!");
             if(text.contains("^+") || text.contains("^-") || text.contains("-+") || text.contains("+-") || text.contains("--") || text.contains("++") || text.contains("^x"))
                 throw new InvalidParameterException("Unul din polinoame a fost introdus in formatul gresit!");
             for(int i=0;i<text.length();i++) {
@@ -58,7 +60,21 @@ public class Polinom {
         this.listaMonoame=lista;
         this.listaRest=listaRest;
     }
+    public Polinom()
+    {}
 
+    @Override
+    public boolean equals(Object obj) {
+        Polinom poli=new Polinom();
+        if(obj instanceof Polinom)
+            poli=(Polinom) obj;
+        else return false;
+        if(this.listaMonoame.size()!=poli.getListaMonoame().size())
+            return false;
+        for(Monom m:poli.getListaMonoame())
+            if(!this.listaMonoame.contains(m)) return false;
+        return true;
+    }
 
     public void merge(){
         this.sort();
