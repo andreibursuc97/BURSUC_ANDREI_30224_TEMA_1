@@ -1,5 +1,6 @@
 package com.company;
 
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -39,7 +40,7 @@ public class Controller  {
                 m_view.setRezultat("Suma: \n"+rezultat.afisarePolinom());
 
             } catch (Exception e2) {
-                System.err.println(e2.getMessage());
+                JOptionPane.showMessageDialog(null,e2.getMessage());
             }
         }
     }
@@ -55,7 +56,7 @@ public class Controller  {
                 m_view.setRezultat("Diferenta: \n"+rezultat.afisarePolinom());
 
             } catch (Exception e2) {
-                System.err.println(e2.getMessage());
+                JOptionPane.showMessageDialog(null,e2.getMessage());
             }
         }
     }
@@ -67,11 +68,12 @@ public class Controller  {
 
                 Polinom p1=new Polinom(m_view.getTextPolinom1());
                 Polinom p2=new Polinom(m_view.getTextPolinom2());
+                //if(p1.)
                 Polinom rezultat=m_model.inmultire(p1,p2);
                 m_view.setRezultat("Produsul: \n"+rezultat.afisarePolinom());
 
             } catch (Exception e2) {
-                System.err.println(e2.getMessage());
+                JOptionPane.showMessageDialog(null,e2.getMessage());
             }
         }
     }
@@ -83,18 +85,23 @@ public class Controller  {
 
                 Polinom p1=new Polinom(m_view.getTextPolinom1());
                 Polinom p2=new Polinom(m_view.getTextPolinom2());
-                ArrayList<Monom> lista=new ArrayList<Monom>();
-                Monom m=new Monom(0,0);
-                lista.add(m);
-                Polinom rezultat=m_model.impartire(p1,p2,lista);
-                lista=rezultat.getListaRest();
-                Polinom rest=new Polinom(lista);
-                String s=new String("Cat: \r\n"+rezultat.afisarePolinom()+"\r\n"+"Rest: \r\n"+rest.afisarePolinom());
-                m_view.setRezultat(s);
-                //System.out.println(s);
+                if((p1.getListaMonoame().get(0).getGrad()==0 && p1.getListaMonoame().get(0).getCoeficient()==0) && (p2.getListaMonoame().get(0).getGrad()==0 && p2.getListaMonoame().get(0).getCoeficient()==0))
+                    throw new Exception("Nu se pot imparti doua polinoame de valoare 0!");
+                else if ( p2.getListaMonoame().get(0).getGrad()==0 && p2.getListaMonoame().get(0).getCoeficient()==0)
+                    throw new Exception("Nu se poate imparti un polinom la 0!");
 
+                ArrayList<Monom> lista = new ArrayList<Monom>();
+                Monom m = new Monom(0, 0);
+
+                lista.add(m);
+                Polinom rezultat = m_model.impartire(p1, p2, lista);
+                lista = rezultat.getListaRest();
+                Polinom rest = new Polinom(lista);
+                String s = new String("Cat: \r\n" + rezultat.afisarePolinom() + "\r\n" + "Rest: \r\n" + rest.afisarePolinom());
+                m_view.setRezultat(s);
+                    //System.out.println(s);
             } catch (Exception e2) {
-                System.err.println(e2.getMessage());
+                JOptionPane.showMessageDialog(null,e2.getMessage());
             }
         }
     }
@@ -109,7 +116,7 @@ public class Controller  {
                 m_view.setRezultat("Derivata polinomului 1: \n"+rezultat.afisarePolinom());
 
             } catch (Exception e2) {
-                System.err.println(e2.getMessage());
+                JOptionPane.showMessageDialog(null,e2.getMessage());
             }
         }
     }
@@ -124,7 +131,7 @@ public class Controller  {
                 m_view.setRezultat("Derivata polinomului 2: \n"+rezultat.afisarePolinom());
 
             } catch (Exception e2) {
-                System.err.println(e2.getMessage());
+                JOptionPane.showMessageDialog(null,e2.getMessage());
             }
         }
     }
@@ -139,7 +146,7 @@ public class Controller  {
                 m_view.setRezultat("Integrala polinomului 2: \n"+rezultat.afisarePolinom());
 
             } catch (Exception e2) {
-                System.err.println(e2.getMessage());
+                JOptionPane.showMessageDialog(null,e2.getMessage());
             }
         }
     }
@@ -154,7 +161,7 @@ public class Controller  {
                 m_view.setRezultat("Integrala polinomului 1: \n"+rezultat.afisarePolinom());
 
             } catch (Exception e2) {
-                System.err.println(e2.getMessage());
+                JOptionPane.showMessageDialog(null,e2.getMessage());
             }
         }
     }

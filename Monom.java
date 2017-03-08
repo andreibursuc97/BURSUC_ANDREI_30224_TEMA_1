@@ -15,7 +15,7 @@ public class Monom implements Comparable<Monom> {
     public Monom(String monom)
     {
         String[] parts;
-        if(monom.lastIndexOf('^')==monom.length()-1) throw new InvalidParameterException();
+        if(monom.lastIndexOf('^')==monom.length()-1) throw new InvalidParameterException("Unul din polinoame a fost introdus in formatul gresit!");
 
         if(monom.lastIndexOf('x')!=-1 && monom.lastIndexOf('x')!=0 && monom.contains("+x")==false && monom.contains("-x")==false )
         {

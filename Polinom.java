@@ -16,18 +16,18 @@ public class Polinom {
     //private Monom monom;
     private ArrayList<Monom> listaMonoame;
     private ArrayList<Monom> listaRest;
+    //private int eroare=0;
     //private String[] parts;
 
-    public Polinom(String text)
+    public Polinom(String text) throws InvalidParameterException
     {
-        try{
             listaMonoame=new ArrayList<>();
-            if(text.contains("^+") || text.contains("^-") || text.contains("-+") || text.contains("+-") || text.contains("--") || text.contains("++"))
-                throw new InvalidParameterException();
+            if(text.contains("^+") || text.contains("^-") || text.contains("-+") || text.contains("+-") || text.contains("--") || text.contains("++") || text.contains("^x"))
+                throw new InvalidParameterException("Unul din polinoame a fost introdus in formatul gresit!");
             for(int i=0;i<text.length();i++) {
                 if (text.charAt(i) < '0' || text.charAt(i) > '9')
                     if (text.charAt(i) != 'x' && text.charAt(i) != '^' && text.charAt(i) != '+' && text.charAt(i) != '-') {
-                        throw new InvalidParameterException();
+                        throw new InvalidParameterException("Unul din polinoame a fost introdus in formatul gresit!");
                     }
             }
             String[] parts = text.split("(?=\\+|\\-)");
@@ -37,11 +37,8 @@ public class Polinom {
             this.sort();
             this.merge();
             this.clean();
-        }
-        catch(InvalidParameterException e)
-        {
-            JOptionPane.showMessageDialog(null,"Unul din polinoame nu a fost introdus in formatul corect !!!");
-        }
+
+
     }
 
     public Polinom(ArrayList<Monom> listaMonoame){
@@ -61,6 +58,7 @@ public class Polinom {
         this.listaMonoame=lista;
         this.listaRest=listaRest;
     }
+
 
     public void merge(){
         this.sort();
@@ -88,7 +86,7 @@ public class Polinom {
         while(i< this.listaMonoame.size())
         {
             m=this.listaMonoame.get(i);
-            if(this.listaMonoame.get(0).getGrad()==0) break;
+            if(this.listaMonoame.size()==1) break;
             if(m.getCoeficient()==0) this.listaMonoame.remove(i);
             else i++;
         }

@@ -1,5 +1,6 @@
 package com.company;
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -49,19 +50,25 @@ public class Main {
         //View view=new View()*/
 
         //test impartire
-        Polinom polinom=new Polinom("x^2+2x+1");
-        Polinom polinom1=new Polinom("x+1");
-        ArrayList<Monom> lista=new ArrayList<>();
-        Polinom impartire=model.impartire(polinom,polinom1,lista);
-        lista=impartire.getListaRest();
-        Polinom rest=new Polinom(lista);
-        //System.out.println();
-        //lista=impartire.getListaMonoame();
-        System.out.println(impartire.afisarePolinom());
-        System.out.println(rest.afisarePolinom());
-        Polinom nou=model.inmultire(impartire,polinom1);
-        nou=model.adunare(nou,rest);
-        System.out.println(nou.afisarePolinom());
+        try {
+            Polinom polinom = new Polinom("0");
+            Polinom polinom1 = new Polinom("2");
+
+            ArrayList<Monom> lista = new ArrayList<>();
+            Polinom impartire = model.impartire(polinom, polinom1, lista);
+            lista = impartire.getListaRest();
+            Polinom rest = new Polinom(lista);
+            //System.out.println();
+            //lista=impartire.getListaMonoame();
+            System.out.println(impartire.afisarePolinom());
+            System.out.println(rest.afisarePolinom());
+            Polinom nou = model.inmultire(impartire, polinom1);
+            nou = model.adunare(nou, rest);
+            System.out.println(nou.afisarePolinom());
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null,e.getMessage());
+        }
         //View view=new View();
 
         /*System.out.println();
