@@ -96,9 +96,9 @@ public class Test {
         System.out.print(" inmultire!\n");
         Polinom poli1=new Polinom("2x^2+3x+5");
         Polinom poli2=new Polinom("3x^2+4x+6");
-        Polinom rezultatAsteptat=new Polinom("6x^26+21x^25+9x^21+10x^12");
+        Polinom rezultatAsteptat=new Polinom("6x^4+17x^3+39x^2+38x+30");
         Polinom rezultatObtinut=this.model.inmultire(poli1,poli2);
-        //System.out.println(rezultatAsteptat.afisarePolinom());
+        //System.out.println(rezultatObtinut.afisarePolinom());
         assertTrue(rezultatObtinut.equals(rezultatAsteptat));
         nrTesteCuSucces++;
     }
