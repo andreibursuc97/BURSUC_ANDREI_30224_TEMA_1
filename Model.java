@@ -95,12 +95,12 @@ public class Model {
         ArrayList<Monom> listaImpartire = new ArrayList<Monom>(lista);
         ArrayList<Monom> lista1 = polinom1.getListaMonoame();
         ArrayList<Monom> lista2 = polinom2.getListaMonoame();
-        if(lista2.get(0).getGrad()==0 && lista1.get(0).getGrad()==0)
+        /*if((!lista1.isEmpty()) &&lista2.get(0).getGrad()==0 && lista1.get(0).getGrad()==0)
         {
             Polinom rezult=this.impartirePolinoameGrad0(lista1,lista2,listaImpartire);
             return rezult;
-        }
-        if(lista2.get(0).getGrad()>lista1.get(0).getGrad() )
+        }*/
+        if(lista1.isEmpty() || lista2.get(0).getGrad()>lista1.get(0).getGrad() )
         {
             ArrayList<Monom> listaFinala=new ArrayList<Monom>();
 
@@ -132,7 +132,7 @@ public class Model {
         return rez;
     }
 
-    public Polinom impartirePolinoameGrad0(ArrayList<Monom> list1,ArrayList<Monom> list2,ArrayList<Monom> list)
+    /*public Polinom impartirePolinoameGrad0(ArrayList<Monom> list1,ArrayList<Monom> list2,ArrayList<Monom> list)
     {
         ArrayList<Monom> listaCat=new ArrayList<Monom>(list);
         ArrayList<Monom> listaRest=new ArrayList<Monom>();
@@ -146,6 +146,6 @@ public class Model {
         listaRest.add(m);
         Polinom rezultat=new Polinom(listaCat,listaRest);
         return rezultat;
-    }
+    }*/
 
 }

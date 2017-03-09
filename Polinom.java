@@ -22,11 +22,16 @@ public class Polinom {
     public Polinom(String text) throws InvalidParameterException
     {
             listaMonoame=new ArrayList<>();
-            if(text.charAt(text.length()-1)=='+' || text.charAt(text.length()-1)=='-' && text.charAt(text.length()-1)=='.' && text.charAt(0)=='.' )
+            if(text.charAt(text.length()-1)=='+' || text.charAt(text.length()-1)=='-' && text.charAt(text.length()-1)=='.' )
                 throw new InvalidParameterException("Unul din polinoame a fost introdus in formatul gresit!");
             if(text.contains("^+") || text.contains("^-") || text.contains("-+") || text.contains("+-") || text.contains("--") || text.contains("++") || text.contains("^x") || text.contains("xx"))
                 throw new InvalidParameterException("Unul din polinoame a fost introdus in formatul gresit!");
-            for(int i=0;i<text.length();i++) {
+            if(text.contains(".x") || text.contains("x.") || text.contains(".^") || text.contains("^."))
+                throw new InvalidParameterException("Unul din polinoame a fost introdus in formatul gresit!");
+            if((text.contains(".")|| text.contains("^") ) && text.length()==1 )
+                throw new InvalidParameterException("Unul din polinoame a fost introdus in formatul gresit!");
+
+        for(int i=0;i<text.length();i++) {
                 if (text.charAt(i) < '0' || text.charAt(i) > '9')
                     if (text.charAt(i) != 'x' && text.charAt(i) != '^' && text.charAt(i) != '+' && text.charAt(i) != '-' && text.charAt(i) != '.') {
                         throw new InvalidParameterException("Unul din polinoame a fost introdus in formatul gresit!");
@@ -110,7 +115,7 @@ public class Polinom {
         while(i< this.listaMonoame.size())
         {
             m=this.listaMonoame.get(i);
-            if(this.listaMonoame.size()==1) break;
+            //if(this.listaMonoame.size()==1) break;
             if(m.getCoeficient()==0) this.listaMonoame.remove(i);
             else i++;
         }
@@ -140,6 +145,11 @@ public class Polinom {
     {
         this.clean();
         StringBuilder s=new StringBuilder();
+        if(this.listaMonoame.isEmpty())
+        {
+            String a=new String("0");
+            return a;
+        }
         for(Monom m:this.listaMonoame) {
             if (m.equals(this.listaMonoame.get(0))) {
                 if (m.getGrad() > 1)

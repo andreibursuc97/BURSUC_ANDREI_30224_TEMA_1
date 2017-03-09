@@ -50,9 +50,9 @@ public class Main {
         //View view=new View()*/
 
         //test impartire
-        /*try {
-            Polinom polinom = new Polinom("x^2+2x+2");
-            Polinom polinom1 = new Polinom("x^2+2x+2");
+        try {
+            Polinom polinom = new Polinom("7x");
+            Polinom polinom1 = new Polinom("3");
 
             ArrayList<Monom> lista = new ArrayList<>();
             Polinom impartire = model.impartire(polinom, polinom1, lista);
@@ -71,7 +71,7 @@ public class Main {
         }
         catch(Exception e){
             JOptionPane.showMessageDialog(null,e.getMessage());
-        }*/
+        }
 
 
     }

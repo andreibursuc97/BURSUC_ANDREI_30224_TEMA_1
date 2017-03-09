@@ -25,7 +25,7 @@ public class Monom implements Comparable<Monom> {
 
         if(monom.lastIndexOf('x')==-1)
         {
-            this.coeficient=Integer.parseInt(monom);
+            this.coeficient=Double.parseDouble(monom);
             this.grad=0;
         }
 
