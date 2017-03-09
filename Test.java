@@ -170,16 +170,37 @@ public class Test {
     public void testIntegrare2() throws Exception {
         System.out.print(" derivare!\n");
         Polinom poli1=new Polinom("7x^5+x+2x^6");
-        String rezultatAsteptat=new String("0,286x^7+1,167x^6+0,5x^2");
         Polinom rezultatObtinut=this.model.integrare(poli1);
-        //System.out.println(rezultatObtinut.afisarePolinom());
-        //System.out.println(rezultatAsteptat.afisarePolinom());
-        assertTrue(rezultatAsteptat.equals(rezultatObtinut.afisarePolinom()));
+        int i=0;
+        for(Monom m:rezultatObtinut.getListaMonoame()) {
+            if (i == 0) assertTrue(m.getCoeficient() == (2.0 / 7) && m.getGrad()==7);
+            else if (i == 1) assertTrue(m.getCoeficient() == (7.0 / 6) && m.getGrad()==6);
+            else assertTrue(m.getCoeficient() == 0.5 && m.getGrad()==2);
+            i++;
+        }
+        //assertTrue(rezultatObtinut.getListaMonoame());
+        //assertTrue(rezultatAsteptat.equals(rezultatObtinut.afisarePolinom()));
         nrTesteCuSucces++;
     }
 
 
-
+    @org.junit.Test
+    public void testIntegrare1() throws Exception {
+        System.out.print(" derivare!\n");
+        Polinom poli1=new Polinom("x^4-3x^2+5x+4");
+        Polinom rezultatObtinut=this.model.integrare(poli1);
+        int i=0;
+        for(Monom m:rezultatObtinut.getListaMonoame()) {
+            if (i == 0) assertTrue(m.getCoeficient() == (1.0 / 5) && m.getGrad()==5);
+            else if (i == 1) assertTrue(m.getCoeficient() == -1 && m.getGrad()==3);
+            else if (i == 2)  assertTrue(m.getCoeficient() == 2.5 && m.getGrad()==2);
+            else assertTrue(m.getCoeficient() == 4 && m.getGrad()==1);
+            i++;
+        }
+        //assertTrue(rezultatObtinut.getListaMonoame());
+        //assertTrue(rezultatAsteptat.equals(rezultatObtinut.afisarePolinom()));
+        nrTesteCuSucces++;
+    }
 
 
   /*  private static Model model=new Model();
