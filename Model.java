@@ -15,6 +15,7 @@ public class Model {
             suma.adaugaMonom(m);
         suma.sort();
         suma.clean();
+        suma.merge();
         return suma;
     }
 
@@ -29,6 +30,7 @@ public class Model {
         }
         diferenta.sort();
         diferenta.clean();
+        diferenta.merge();
         return diferenta;
     }
 
@@ -85,7 +87,6 @@ public class Model {
 
         }
         Polinom integrare=new Polinom(listaIntegrare);
-
         return integrare;
     }
 

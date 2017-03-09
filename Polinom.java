@@ -22,13 +22,13 @@ public class Polinom {
     public Polinom(String text) throws InvalidParameterException
     {
             listaMonoame=new ArrayList<>();
-            if(text.charAt(text.length()-1)=='+' || text.charAt(text.length()-1)=='-')
+            if(text.charAt(text.length()-1)=='+' || text.charAt(text.length()-1)=='-' && text.charAt(text.length()-1)=='.' && text.charAt(0)=='.' )
                 throw new InvalidParameterException("Unul din polinoame a fost introdus in formatul gresit!");
-            if(text.contains("^+") || text.contains("^-") || text.contains("-+") || text.contains("+-") || text.contains("--") || text.contains("++") || text.contains("^x"))
+            if(text.contains("^+") || text.contains("^-") || text.contains("-+") || text.contains("+-") || text.contains("--") || text.contains("++") || text.contains("^x") || text.contains("xx"))
                 throw new InvalidParameterException("Unul din polinoame a fost introdus in formatul gresit!");
             for(int i=0;i<text.length();i++) {
                 if (text.charAt(i) < '0' || text.charAt(i) > '9')
-                    if (text.charAt(i) != 'x' && text.charAt(i) != '^' && text.charAt(i) != '+' && text.charAt(i) != '-') {
+                    if (text.charAt(i) != 'x' && text.charAt(i) != '^' && text.charAt(i) != '+' && text.charAt(i) != '-' && text.charAt(i) != '.') {
                         throw new InvalidParameterException("Unul din polinoame a fost introdus in formatul gresit!");
                     }
             }
@@ -46,6 +46,8 @@ public class Polinom {
     public Polinom(ArrayList<Monom> listaMonoame){
         this.listaMonoame=listaMonoame;
         this.sort();
+        this.clean();
+        this.merge();
     }
 
     public Polinom(Monom n)
@@ -59,6 +61,10 @@ public class Polinom {
     {
         this.listaMonoame=lista;
         this.listaRest=listaRest;
+        this.sort();
+        this.clean();
+        this.merge();
+
     }
     public Polinom()
     {}
@@ -71,10 +77,12 @@ public class Polinom {
         else return false;
         if(this.listaMonoame.size()!=poli.getListaMonoame().size())
             return false;
+
         for(Monom m:poli.getListaMonoame())
             if(!this.listaMonoame.contains(m)) return false;
         return true;
     }
+
 
     public void merge(){
         this.sort();
@@ -85,7 +93,7 @@ public class Polinom {
         {
             j=i+1;
             m=this.listaMonoame.get(i);
-            while(j<this.listaMonoame.size() && m.equals(this.listaMonoame.get(j)) )
+            while(j<this.listaMonoame.size() && m.getGrad()==this.listaMonoame.get(j).getGrad() )
             {
 
                 n=this.listaMonoame.get(j);
