@@ -22,9 +22,9 @@ public class Polinom {
     public Polinom(String text) throws InvalidParameterException
     {
             listaMonoame=new ArrayList<>();
-            if(text.charAt(text.length()-1)=='+' || text.charAt(text.length()-1)=='-' && text.charAt(text.length()-1)=='.' )
+            if(text.charAt(text.length()-1)=='+' || text.charAt(0)=='^' || text.charAt(text.length()-1)=='-' && text.charAt(text.length()-1)=='.' )
                 throw new InvalidParameterException("Unul din polinoame a fost introdus in formatul gresit!");
-            if(text.contains("^+") || text.contains("^-") || text.contains("-+") || text.contains("+-") || text.contains("--") || text.contains("++") || text.contains("^x") || text.contains("xx"))
+            if(text.contains("^+") || text.contains("^-") || text.contains("^^") || text.contains("-+") || text.contains("+-") || text.contains("--") || text.contains("++") || text.contains("^x") || text.contains("xx"))
                 throw new InvalidParameterException("Unul din polinoame a fost introdus in formatul gresit!");
             if(text.contains(".x") || text.contains("x.") || text.contains(".^") || text.contains("^."))
                 throw new InvalidParameterException("Unul din polinoame a fost introdus in formatul gresit!");
@@ -150,6 +150,12 @@ public class Polinom {
             String a=new String("0");
             return a;
         }
+        afisare(s);
+        String rez=s.toString();
+        return rez;
+    }
+
+    private void afisare(StringBuilder s) {
         for(Monom m:this.listaMonoame) {
             if (m.equals(this.listaMonoame.get(0))) {
                 if (m.getGrad() > 1)
@@ -160,7 +166,6 @@ public class Polinom {
                     s.append(m.getTextCoeficient());
                 continue;
             }
-
             if (m.getCoeficient() > 0){
                 s.append("+");
                 if (m.getGrad() > 1)
@@ -177,12 +182,7 @@ public class Polinom {
                      s.append(m.getTextCoeficient() + "x");
                  else
                      s.append(m.getTextCoeficient());
-
-
         }
-        String rez=s.toString();
-
-        return rez;
     }
 
     public void adaugaMonom(Monom m)

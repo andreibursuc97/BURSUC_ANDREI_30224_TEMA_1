@@ -4,7 +4,6 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.Comparator;
 
 /**
  * Created by Andrei on 04.03.2017.
@@ -12,11 +11,11 @@ import java.util.Comparator;
 public class Controller  {
 
     View m_view;
-    Model m_model;
+    Calculator m_calculator;
 
-    public Controller(View view,Model model)
+    public Controller(View view,Calculator calculator)
     {
-        this.m_model=model;
+        this.m_calculator = calculator;
         this.m_view=view;
         m_view.addActionListenerAdunare(new ButonAdunareListener());
         m_view.addActionListenerScadere(new ButonScadereeListener());
@@ -36,7 +35,7 @@ public class Controller  {
 
                 Polinom p1=new Polinom(m_view.getTextPolinom1());
                 Polinom p2=new Polinom(m_view.getTextPolinom2());
-                Polinom rezultat=m_model.adunare(p1,p2);
+                Polinom rezultat= m_calculator.adunare(p1,p2);
                 m_view.setRezultat("Suma: \n"+rezultat.afisarePolinom());
 
             } catch (Exception e2) {
@@ -52,7 +51,7 @@ public class Controller  {
 
                 Polinom p1=new Polinom(m_view.getTextPolinom1());
                 Polinom p2=new Polinom(m_view.getTextPolinom2());
-                Polinom rezultat=m_model.scadere(p1,p2);
+                Polinom rezultat= m_calculator.scadere(p1,p2);
                 m_view.setRezultat("Diferenta: \n"+rezultat.afisarePolinom());
 
             } catch (Exception e2) {
@@ -69,7 +68,7 @@ public class Controller  {
                 Polinom p1=new Polinom(m_view.getTextPolinom1());
                 Polinom p2=new Polinom(m_view.getTextPolinom2());
                 //if(p1.)
-                Polinom rezultat=m_model.inmultire(p1,p2);
+                Polinom rezultat= m_calculator.inmultire(p1,p2);
                 m_view.setRezultat("Produsul: \n"+rezultat.afisarePolinom());
 
             } catch (Exception e2) {
@@ -94,7 +93,7 @@ public class Controller  {
                 Monom m = new Monom(0, 0);
 
                 lista.add(m);
-                Polinom rezultat = m_model.impartire(p1, p2, lista);
+                Polinom rezultat = m_calculator.impartire(p1, p2, lista);
                 lista = rezultat.getListaRest();
                 Polinom rest = new Polinom(lista);
                 String s = new String("Cat: \r\n" + rezultat.afisarePolinom() + "\r\n" + "Rest: \r\n" + rest.afisarePolinom());
@@ -112,7 +111,7 @@ public class Controller  {
             try {
 
                 Polinom p1=new Polinom(m_view.getTextPolinom1());
-                Polinom rezultat=m_model.derivare(p1);
+                Polinom rezultat= m_calculator.derivare(p1);
                 m_view.setRezultat("Derivata polinomului 1: \n"+rezultat.afisarePolinom());
 
             } catch (Exception e2) {
@@ -127,7 +126,7 @@ public class Controller  {
             try {
 
                 Polinom p2=new Polinom(m_view.getTextPolinom2());
-                Polinom rezultat=m_model.derivare(p2);
+                Polinom rezultat= m_calculator.derivare(p2);
                 m_view.setRezultat("Derivata polinomului 2: \n"+rezultat.afisarePolinom());
 
             } catch (Exception e2) {
@@ -142,7 +141,7 @@ public class Controller  {
             try {
 
                 Polinom p2=new Polinom(m_view.getTextPolinom2());
-                Polinom rezultat=m_model.integrare(p2);
+                Polinom rezultat= m_calculator.integrare(p2);
                 m_view.setRezultat("Integrala polinomului 2: \n"+rezultat.afisarePolinom());
 
             } catch (Exception e2) {
@@ -157,7 +156,7 @@ public class Controller  {
             try {
 
                 Polinom p1=new Polinom(m_view.getTextPolinom1());
-                Polinom rezultat=m_model.integrare(p1);
+                Polinom rezultat= m_calculator.integrare(p1);
                 m_view.setRezultat("Integrala polinomului 1: \n"+rezultat.afisarePolinom());
 
             } catch (Exception e2) {

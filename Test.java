@@ -16,13 +16,13 @@ import static org.junit.Assert.assertTrue;
  */
 public class Test {
 
-    private static Model model;
+    private static Calculator calculator;
     private static int nrTesteExecutate = 0;
     private static int nrTesteCuSucces = 0;
 
     @BeforeClass
     public static void setUpBeforeClass() throws Exception {
-        model=new Model();
+        calculator =new Calculator();
     }
 
     @AfterClass
@@ -49,7 +49,7 @@ public class Test {
         Polinom poli1=new Polinom("2x^2+3x+5");
         Polinom poli2=new Polinom("3x^2+4x+6");
         Polinom rezultatAsteptat=new Polinom("5x^2+7x+11");
-        Polinom rezultatObtinut=this.model.adunare(poli1,poli2);
+        Polinom rezultatObtinut=this.calculator.adunare(poli1,poli2);
         //System.out.println(rezultatAsteptat.afisarePolinom());
         assertTrue(rezultatObtinut.equals(rezultatAsteptat));
         nrTesteCuSucces++;
@@ -61,7 +61,7 @@ public class Test {
         Polinom poli1=new Polinom("3x^20+5x^6+2x+4");
         Polinom poli2=new Polinom("7x^5+3x+2x^6");
         Polinom rezultatAsteptat=new Polinom("3x^20+7x^6+7x^5+5x+4");
-        Polinom rezultatObtinut=this.model.adunare(poli1,poli2);
+        Polinom rezultatObtinut=this.calculator.adunare(poli1,poli2);
         //System.out.println(rezultatAsteptat.afisarePolinom());
         assertTrue(rezultatObtinut.equals(rezultatAsteptat));
         nrTesteCuSucces++;
@@ -73,7 +73,7 @@ public class Test {
         Polinom poli1=new Polinom("3x^20+5x^6+2x+4");
         Polinom poli2=new Polinom("7x^5+3x+2x^6");
         Polinom rezultatAsteptat=new Polinom("3x^20+3x^6-7x^5-x+4");
-        Polinom rezultatObtinut=this.model.scadere(poli1,poli2);
+        Polinom rezultatObtinut=this.calculator.scadere(poli1,poli2);
         //System.out.println(rezultatAsteptat.afisarePolinom());
         assertTrue(rezultatObtinut.equals(rezultatAsteptat));
         nrTesteCuSucces++;
@@ -85,7 +85,7 @@ public class Test {
         Polinom poli1=new Polinom("2x^2+3x+5");
         Polinom poli2=new Polinom("3x^2+4x+6");
         Polinom rezultatAsteptat=new Polinom("-x^2-x-1");
-        Polinom rezultatObtinut=this.model.scadere(poli1,poli2);
+        Polinom rezultatObtinut=this.calculator.scadere(poli1,poli2);
         //System.out.println(rezultatAsteptat.afisarePolinom());
         assertTrue(rezultatObtinut.equals(rezultatAsteptat));
         nrTesteCuSucces++;
@@ -97,7 +97,7 @@ public class Test {
         Polinom poli1=new Polinom("2x^2+3x+5");
         Polinom poli2=new Polinom("3x^2+4x+6");
         Polinom rezultatAsteptat=new Polinom("6x^4+17x^3+39x^2+38x+30");
-        Polinom rezultatObtinut=this.model.inmultire(poli1,poli2);
+        Polinom rezultatObtinut=this.calculator.inmultire(poli1,poli2);
         //System.out.println(rezultatObtinut.afisarePolinom());
         assertTrue(rezultatObtinut.equals(rezultatAsteptat));
         nrTesteCuSucces++;
@@ -109,7 +109,7 @@ public class Test {
         Polinom poli1=new Polinom("3x^20+5x^6+2x+4");
         Polinom poli2=new Polinom("7x^5+3x+2x^6");
         Polinom rezultatAsteptat=new Polinom("6x^26+21x^25+9x^21+10x^12+35x^11+19x^7+22x^6+28x^5+6x^2+12x");
-        Polinom rezultatObtinut=this.model.inmultire(poli1,poli2);
+        Polinom rezultatObtinut=this.calculator.inmultire(poli1,poli2);
         //System.out.println(rezultatAsteptat.afisarePolinom());
         assertTrue(rezultatObtinut.equals(rezultatAsteptat));
         nrTesteCuSucces++;
@@ -123,7 +123,7 @@ public class Test {
         Polinom cat=new Polinom("x^3+2x^2+x+7");
         Polinom rest=new Polinom("18");
         ArrayList<Monom> list=new ArrayList<>();
-        Polinom rezultatObtinut=this.model.impartire(poli1,poli2,list);
+        Polinom rezultatObtinut=this.calculator.impartire(poli1,poli2,list);
         Polinom restAsteptat=new Polinom(rezultatObtinut.getListaRest());
         //System.out.println(rezultatAsteptat.afisarePolinom());
         assertTrue(rezultatObtinut.equals(cat));
@@ -137,10 +137,10 @@ public class Test {
         Polinom poli1=new Polinom("3x^20+5x^6+2x+4");
         Polinom poli2=new Polinom("7x^5+3x+2x^6");
         ArrayList<Monom> list=new ArrayList<>();
-        Polinom rezultatObtinut=this.model.impartire(poli1,poli2,list);
+        Polinom rezultatObtinut=this.calculator.impartire(poli1,poli2,list);
         Polinom rest=new Polinom(rezultatObtinut.getListaRest());
-        Polinom nou = model.inmultire(rezultatObtinut, poli2);
-        nou = model.adunare(nou, rest);
+        Polinom nou = calculator.inmultire(rezultatObtinut, poli2);
+        nou = calculator.adunare(nou, rest);
         poli1=new Polinom("3x^20+5x^6+2x+4");
         assertTrue(nou.equals(poli1));
         nrTesteCuSucces++;
@@ -151,7 +151,7 @@ public class Test {
         System.out.print(" derivare!\n");
         Polinom poli1=new Polinom("x^4-3x^2+5x+4");
         Polinom rezultatAsteptat=new Polinom("4x^3-6x+5");
-        Polinom rezultatObtinut=this.model.derivare(poli1);
+        Polinom rezultatObtinut=this.calculator.derivare(poli1);
         assertTrue(rezultatObtinut.equals(rezultatAsteptat));
         nrTesteCuSucces++;
     }
@@ -161,7 +161,7 @@ public class Test {
         System.out.print(" derivare!\n");
         Polinom poli1=new Polinom("7x^5+3x+2x^6");
         Polinom rezultatAsteptat=new Polinom("35x^4+3+12x^5");
-        Polinom rezultatObtinut=this.model.derivare(poli1);
+        Polinom rezultatObtinut=this.calculator.derivare(poli1);
         assertTrue(rezultatObtinut.equals(rezultatAsteptat));
         nrTesteCuSucces++;
     }
@@ -170,7 +170,7 @@ public class Test {
     public void testIntegrare2() throws Exception {
         System.out.print(" derivare!\n");
         Polinom poli1=new Polinom("7x^5+x+2x^6");
-        Polinom rezultatObtinut=this.model.integrare(poli1);
+        Polinom rezultatObtinut=this.calculator.integrare(poli1);
         int i=0;
         for(Monom m:rezultatObtinut.getListaMonoame()) {
             if (i == 0) assertTrue(m.getCoeficient() == (2.0 / 7) && m.getGrad()==7);
@@ -188,7 +188,7 @@ public class Test {
     public void testIntegrare1() throws Exception {
         System.out.print(" derivare!\n");
         Polinom poli1=new Polinom("x^4-3x^2+5x+4");
-        Polinom rezultatObtinut=this.model.integrare(poli1);
+        Polinom rezultatObtinut=this.calculator.integrare(poli1);
         int i=0;
         for(Monom m:rezultatObtinut.getListaMonoame()) {
             if (i == 0) assertTrue(m.getCoeficient() == (1.0 / 5) && m.getGrad()==5);
@@ -203,7 +203,7 @@ public class Test {
     }
 
 
-  /*  private static Model model=new Model();
+  /*  private static Calculator calculator=new Calculator();
     private static int nrTesteExecutate = 0;
     private static int nrTesteCuSucces = 0;
 
